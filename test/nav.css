@@ -1,0 +1,28 @@
+nav {
+  width: 80%;
+  display: flex;
+  margin: 0 auto;
+  height: 7vh;
+}
+
+.left-nav {
+  display: flex;
+  flex-basis: 50%;
+  align-items: center;
+}
+
+.right-nav {
+  flex-basis: 50%;
+}
+
+.right-nav ul {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+}
+
+.right-nav ul li {
+  flex-basis: 100px;
+  list-style-type: none;
+}

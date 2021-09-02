@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <title>Document</title>
+    <style>
+      .number-container {
+        width: 60%;
+        margin: 30px auto 0px;
+        display: grid;
+        grid-auto-rows: minmax(100px, auto);
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-start: 2;
+        grid-column-end: 5;
+        gap: 20px;
+      }
+      .number-container .number-wrapper {
+        border: 1px solid #000;
+        border-radius: 8px;
+        text-align: center;
+        position: relative;
+      }
+      .number-wrapper h1 {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      #number-output {
+        text-align: center;
+        margin-top: 100px;
+        font-size: 50px;
+        font-weight: 600;
+      }
+      .nav-bar {
+        text-align: center;
+      }
+      a {
+        text-decoration: none;
+        color: #000;
+        font-weight: 600;
+        font-size: 24px;
+        transition: all 0.3s ease-in-out;
+      }
+
+      a:hover {
+        opacity: 0.7;
+        color: #000;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav-bar">
+      <a href="formControl.html">Go to Form Controll</a>
+      <a href="ticketSelector.html">Go to Ticket Selector</a>
+      <a href="calculator.html">Go to Calculator</a>
+    </div>
+    <div class="number-container"></div>
+    <div id="number-output"></div>
+    <script>
+      let numberContainer = document.getElementsByClassName(
+        "number-container"
+      )[0];
+
+      let numberOutputDiv = document.getElementById("number-output");
+
+      getAmountOfNumberWrappers();
+
+      function getAmountOfNumberWrappers() {
+        let maxNumberWrappers = 5;
+        for (let i = 0; i < maxNumberWrappers; i++) {
+          let newNumberWrapper = document.createElement("div");
+          let newNumberHeader = document.createElement("h1");
+          let numberHeaderText = document.createTextNode(i + 1);
+          newNumberWrapper.id = "num";
+          newNumberWrapper.className = "number-wrapper";
+          newNumberWrapper.appendChild(newNumberHeader);
+          newNumberHeader.appendChild(numberHeaderText);
+          numberContainer.appendChild(newNumberWrapper);
+
+          newNumberWrapper.addEventListener("click", function () {
+            numberOutputDiv.innerHTML = newNumberHeader.innerText;
+          });
+        }
+      }
+    </script>
+  </body>
+</html>

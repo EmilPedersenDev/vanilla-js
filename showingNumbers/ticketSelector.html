@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+    <style>
+      .ticket-container {
+        width: 90%;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .ticket-wrapper {
+        /* width: 50%; */
+        display: grid;
+        grid-auto-rows: minmax(20px, auto);
+        grid-template-columns: repeat(4, 1fr);
+        gap: 5px;
+      }
+      .inner-ticket {
+        border: 1px solid #000;
+      }
+      #free {
+        background: green;
+      }
+
+      #occupied {
+        background: red;
+      }
+
+      .inner-ticket:hover {
+        cursor: pointer;
+      }
+      .taken {
+        position: relative;
+      }
+      .taken-inside {
+        background: red;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        right: 40px;
+        top: 4px;
+      }
+
+      .info-wrapper {
+        margin-top: 20px;
+      }
+
+      .available {
+        position: relative;
+        margin-left: 20px;
+      }
+      .available-inside {
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        right: 62px;
+        top: 4px;
+        background: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ticket-container">
+      <div class="nav">
+        <a href="index.html">go to home</a>
+      </div>
+      <div class="row">
+        <div class="ticket-wrapper col-12 col-sm-6">
+          <div class="inner-ticket">
+            <span>row 1</span>
+            <span>seat 1</span>
+          </div>
+          <div class="inner-ticket" id="occupied">
+            <span>row 1</span>
+            <span>seat 2</span>
+          </div>
+          <div class="inner-ticket">
+            <span>row 1</span>
+            <span>seat 3</span>
+          </div>
+          <div class="inner-ticket">
+            <span>row 1</span>
+            <span>seat 4</span>
+          </div>
+          <div class="inner-ticket">
+            <span>row 2</span>
+            <span>seat 1</span>
+          </div>
+          <div class="inner-ticket">
+            <span>row 2</span>
+            <span>seat 2</span>
+          </div>
+          <div class="inner-ticket">
+            <span>row 2</span>
+            <span>seat 3</span>
+          </div>
+          <div class="inner-ticket">
+            <span>row 2</span>
+            <span>seat 4</span>
+          </div>
+        </div>
+        <div class="select-movie col-12 col-sm-6">
+          <p>Välj film</p>
+          <select name="movies" id="select-movies">
+            <option value="1" selected>Argo</option>
+            <option value="2">Spotlight</option>
+            <option value="3">Equalizer</option>
+            <option value="4">The Departed</option>
+          </select>
+          <p>Pris per biljett <span id="ticket-price"></span></p>
+        </div>
+      </div>
+      <div class="info-wrapper">
+        <span class="taken"><span class="taken-inside"></span> Taken</span>
+        <span class="available"
+          ><span class="available-inside"></span> Available</span
+        >
+      </div>
+      <div class="price-wrapper">
+        <p id="totalSum">Din totala summa är: 0 kr</p>
+        <p id="selected-movie">Film:</p>
+      </div>
+    </div>
+    <script>
+      let innerTicketWrapper = document.querySelectorAll(".inner-ticket");
+      let totalSum = document.getElementById("totalSum");
+      let getMovieOption = document.getElementById("select-movies");
+      let ticketPrice = document.getElementById("ticket-price");
+      let selectedMovieText =
+        getMovieOption.options[getMovieOption.selectedIndex].text;
+      let priceForSeat = 100;
+      let moviePrices = [
+        { id: 0, name: "Argo", price: 130 },
+        { id: 1, name: "Spotlight", price: 110 },
+        { id: 2, name: "Equalizer", price: 90 },
+        { id: 3, name: "The Departed", price: 100 },
+      ];
+      let numberOfSeats = 0;
+      let sum = 0;
+      setTicketPrice();
+
+      document.getElementById("selected-movie").innerHTML =
+        "Film: " + selectedMovieText;
+
+      function setTicketPrice() {
+        for (let i = 0; i < moviePrices.length; i++) {
+          let moviePrice = moviePrices[i];
+          if (moviePrice.name.indexOf(selectedMovieText) > -1) {
+            ticketPrice.innerHTML = moviePrice.price + " kr";
+          }
+        }
+      }
+
+      getMovieOption.addEventListener("change", () => {
+        selectedMovieText =
+          getMovieOption.options[getMovieOption.selectedIndex].text;
+        document.getElementById("selected-movie").innerHTML =
+          "Film: " + selectedMovieText;
+        getPrice();
+        setTicketPrice();
+      });
+
+      innerTicketWrapper.forEach((e) =>
+        e.addEventListener("click", function () {
+          if (e.id === "occupied") return;
+          if (e.id !== "free") {
+            e.id = "free";
+            numberOfSeats++;
+          } else {
+            e.id = "";
+            numberOfSeats--;
+          }
+          getPrice();
+        })
+      );
+
+      function getPrice() {
+        sum = 0;
+        for (let i = 0; i < moviePrices.length; i++) {
+          let moviePrice = moviePrices[i];
+
+          if (moviePrice.name.indexOf(selectedMovieText) > -1) {
+            let priceOfSeats = moviePrice.price * numberOfSeats;
+            sum += priceOfSeats;
+          }
+        }
+        totalSum.innerHTML = `Din totala summa är: ${sum} kr`;
+      }
+    </script>
+  </body>
+</html>

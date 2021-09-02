@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="question-wrapper one" id="wrapper-1">
+        <div id="question-1">
+          <h1>What is this?</h1>
+          <div class="alternative-wrapper">
+            <p>A</p>
+            <p>B</p>
+            <p>C</p>
+            <p>D</p>
+          </div>
+        </div>
+      </div>
+      <div class="right-answer-wrapper" id="right-answer-wrapper-1">
+        <h1 id="isRight"></h1>
+        <h4 id="goToNextQuestion">Next question</h4>
+      </div>
+      <div class="question-wrapper two" id="wrapper-2">
+        <div id="question-2">
+          <h1>What is this then???</h1>
+          <div class="alternative-wrapper">
+            <p>A</p>
+            <p>B</p>
+            <p>C</p>
+            <p>D</p>
+          </div>
+        </div>
+      </div>
+      <div class="question-wrapper three" id="wrapper-3">
+        <div id="question-3">
+          <h1>And this??</h1>
+          <div class="alternative-wrapper">
+            <p>A</p>
+            <p>B</p>
+            <p>C</p>
+            <p>D</p>
+          </div>
+        </div>
+      </div>
+      <div class="question-wrapper four" id="wrapper-4">
+        <div id="question-4">
+          <h1>Score</h1>
+          <div class="score-wrapper"></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      let answers = document.getElementsByTagName("p");
+
+      let score = 0;
+
+      let rightAnswers = [
+        {
+          id: 1,
+          answer: "a",
+          toRoute: "right-answer-wrapper-1",
+          next: "wrapper-2",
+        },
+        {
+          id: 2,
+          answer: "b",
+          toRoute: "right-answer-wrapper-1",
+          next: "wrapper-3",
+        },
+        {
+          id: 3,
+          answer: "c",
+          toRoute: "right-answer-wrapper-1",
+          next: "wrapper-4",
+        },
+      ];
+
+      for (let i = 0; i < answers.length; i++) {
+        let answer = answers[i];
+        answer.addEventListener("click", () => {
+          getAnswer(answer);
+        });
+      }
+
+      function getAnswer(answer) {
+        let currentRightAnswer = rightAnswers.find((item) => {
+          if (answer.offsetParent.id.indexOf(item.id.toString()) > -1) {
+            console.log(item.id, answer.offsetParent.id);
+            return item;
+          }
+        });
+
+        let isRight =
+          answer.innerHTML.toLowerCase() ===
+          currentRightAnswer.answer.toLowerCase();
+
+        if (isRight) {
+          answer.style.background = "green";
+        } else {
+          answer.style.background = "red";
+        }
+
+        return new Promise((res, rej) => {
+          setTimeout(() => {
+            answer.style.background = "#fce4ec";
+
+            let rightOrWrongId = document.getElementById("isRight");
+
+            if (isRight) {
+              rightOrWrongId.innerHTML = "You were right!!";
+              score++;
+            } else {
+              rightOrWrongId.innerHTML = "You were wrong..";
+            }
+
+            if (currentRightAnswer.id === 3) {
+              document.getElementById("goToNextQuestion").innerHTML =
+                "Go to score";
+            }
+
+            document.getElementById(answer.offsetParent.id).style.visibility =
+              "hidden";
+
+            let toRightRoute = document.getElementById(
+              currentRightAnswer.toRoute
+            );
+            toRightRoute.style.visibility = "visible";
+            toRightRoute.style.zIndex = "1";
+
+            document
+              .getElementById("goToNextQuestion")
+              .addEventListener("click", () => {
+                sendToNewQuestion(currentRightAnswer);
+              });
+          }, 1500);
+          res();
+        }).then(() => {
+          console.log("done");
+        });
+      }
+
+      function sendToNewQuestion(val) {
+        let hej = document
+          .getElementById("goToNextQuestion")
+          .classList.add("notransition");
+        document.getElementById(val.next).style.visibility = "visible";
+        document.getElementById(val.toRoute).style.visibility = "hidden";
+
+        if (val.id === 3) {
+          document.querySelector(".score-wrapper").innerHTML =
+            score > 1 ? score + " points" : score + " point";
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testing XSS</title>
+  <style>
+    body {
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: lightgray;
+      margin: 0;
+      padding: 0;
+      font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      margin: 20px 0px 10px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      padding: 20px;
+      border-radius: 5px;
+      background: #fff;
+      box-shadow: 0 0 10px 2px rgb(119, 119, 119);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .cta {
+      display: flex;
+      margin: 20px 0px;
+    }
+
+    input,
+    button {
+      padding: 8px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Add Name</h1>
+    <div class="cta">
+      <input type="text" placeholder="Name..." id="nameInput">
+      <button id="nameBtn">Submit User</button>
+    </div>
+    <p id="nameResult"></p>
+
+    <div class="user">
+      <p id="user"></p>
+    </div>
+  </div>
+
+  <script>
+    "use strict";
+    const nameInput = document.getElementById("nameInput");
+    const nameSubmit = document.getElementById("nameBtn");
+    const nameResult = document.getElementById("nameResult");
+    const acitveUser = document.getElementById("user");
+
+    let userName = "";
+
+    const getUser = async () => {
+      try {
+        const result = await fetch(`http://localhost:3000/user/60df2d3467ee69522c70facc`, {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        });
+
+        const data = await result.json();
+
+        acitveUser.innerHTML = data.name;
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    getUser();
+
+    const handleSubmit = async (e) => {
+      if (!userName) return;
+      try {
+
+
+        const result = await fetch("http://localhost:3000/user", {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name: userName })
+        })
+        const data = await result.json();
+
+        nameResult.innerHTML = data.name;
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    nameInput.addEventListener("input", (e) => {
+      userName = e.target.value;
+    });
+
+    nameSubmit.addEventListener("click", (e) => {
+      handleSubmit(e);
+    });
+
+  </script>
+
+</body>
+
+</html>

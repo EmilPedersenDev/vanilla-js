@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <style>
+      .calc-container {
+        width: 60%;
+        margin: 0 auto;
+      }
+      .calc-wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: minmax(100px, auto);
+        gap: 5px;
+        margin-top: 20px;
+      }
+      .num-wrapper,
+      .operator-wrapper,
+      #delete-wrapper,
+      #equals {
+        text-align: center;
+        border: 1px solid #000;
+        border-radius: 8px;
+        position: relative;
+      }
+
+      h2 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .row {
+        text-align: center;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="calc-container">
+      <a href="index.html">Back to Start</a>
+      <div class="calc-wrapper">
+        <div class="num-wrapper">
+          <h2>1</h2>
+        </div>
+        <div class="num-wrapper">
+          <h2>2</h2>
+        </div>
+        <div class="num-wrapper">
+          <h2>3</h2>
+        </div>
+        <div class="num-wrapper">
+          <h2>4</h2>
+        </div>
+        <div class="num-wrapper">
+          <h2>5</h2>
+        </div>
+        <div class="num-wrapper">
+          <h2>6</h2>
+        </div>
+        <div class="num-wrapper">
+          <h2>7</h2>
+        </div>
+        <div class="num-wrapper">
+          <h2>8</h2>
+        </div>
+        <div class="num-wrapper">
+          <h2>9</h2>
+        </div>
+        <div class="operator-wrapper">
+          <h2>+</h2>
+        </div>
+        <div class="operator-wrapper">
+          <h2>-</h2>
+        </div>
+        <div class="operator-wrapper">
+          <h2>*</h2>
+        </div>
+        <div class="operator-wrapper">
+          <h2>/</h2>
+        </div>
+        <div id="equals" onclick="calculateSum('=')">
+          <h2>=</h2>
+        </div>
+        <div id="delete-wrapper" onclick="onDelete()">
+          <h2>Delete</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div id="showNumber" class="col-6"></div>
+        <div id="operator-equals" class="col-6"></div>
+      </div>
+      <div class="row">
+        <div id="result" class="col-12">0</div>
+      </div>
+      <div class="row">
+        <div id="error-msg" style="color: red;"></div>
+      </div>
+    </div>
+    <script>
+      let allCalculateNum = document.getElementsByClassName("num-wrapper");
+      let allOperators = document.getElementsByClassName("operator-wrapper");
+      let equals = document.getElementById("equals");
+      let deleteNum = document.getElementById("delete-wrapper");
+      let showNumber = document.getElementById("showNumber");
+      let showOperatorOrEquals = document.getElementById("operator-equals");
+      let result = document.getElementById("result");
+      let errorMessage = document.getElementById("error-msg");
+      addClickToNumWrapper();
+      addClickToOperatorWrapper();
+
+      let sum = 0;
+      let currentNum = "";
+      let currentNumInt = 0;
+      let oldNumInt = 0;
+      let currentOperator = "";
+
+      function addClickToNumWrapper() {
+        for (let i = 0; i < allCalculateNum.length; i++) {
+          let calculateDiv = allCalculateNum[i];
+
+          calculateDiv.addEventListener("click", (e) => {
+            setNumbers(e.target.outerText);
+          });
+        }
+      }
+
+      function addClickToOperatorWrapper() {
+        for (let i = 0; i < allOperators.length; i++) {
+          let operators = allOperators[i];
+
+          operators.addEventListener("click", (e) => {
+            setOperators(e.target.outerText);
+          });
+        }
+      }
+
+      function setNumbers(num) {
+        if (sum) {
+          currentNum = num;
+          sum = 0;
+          result.innerHTML = sum;
+          showOperatorOrEquals.innerHTML = "";
+        } else {
+          currentNum += num;
+        }
+        errorMessage.innerHTML = "";
+        showNumber.innerHTML = currentNum;
+      }
+
+      function setOperators(operator) {
+        if (!currentNum) {
+          errorMessage.innerHTML = new Error(
+            "Add a number before adding an operator :)"
+          );
+        }
+        currentNumInt = parseFloat(currentNum);
+        oldNumInt += currentNumInt;
+        currentNum = "";
+
+        currentOperator = operator;
+        showOperatorOrEquals.innerHTML = currentOperator;
+        result.innerHTML = sum;
+      }
+      function calculateSum(equals) {
+        currentNumInt = parseFloat(currentNum);
+        switch (currentOperator) {
+          case "+":
+            sum = oldNumInt + currentNumInt;
+            break;
+          case "-":
+            sum = oldNumInt - currentNumInt;
+            break;
+          case "*":
+            sum = oldNumInt * currentNumInt;
+            break;
+          case "/":
+            sum = oldNumInt / currentNumInt;
+            break;
+          default:
+            sum = currentNumInt;
+        }
+
+        if (!isFinite(sum)) {
+          if (isNaN(sum)) {
+            errorMessage.innerHTML = new Error("Sorry but that's not a number");
+          } else {
+            errorMessage.innerHTML = new Error("To infinity and beyond!");
+          }
+        }
+        oldNumInt = 0;
+        currentOperator = "";
+        result.innerHTML = sum;
+      }
+
+      function onDelete() {
+        clearAll();
+        showNumber.innerHTML = currentNum;
+        showOperatorOrEquals.innerHTML = currentOperator;
+        result.innerHTML = sum;
+      }
+
+      function clearAll() {
+        currentNum = "";
+        oldNumInt = 0;
+        sum = 0;
+        currentOperator = "";
+        errorMessage.innerHTML = "";
+      }
+    </script>
+  </body>
+</html>

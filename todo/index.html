@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Todo!</h1>
+      <div class="add-todo">
+        <input
+          id="add-todo"
+          type="text"
+          placeholder="Add Todo"
+          oninput="getInputVal(this)"
+          onfocus="this.value = ''"
+          value=""
+        />
+        <button id="add-todo-button">Submit</button>
+      </div>
+      <div class="todo-output">
+        <ul id="todo-list"></ul>
+      </div>
+    </div>
+    <script>
+      // DOM elements
+      let addTodoButton = document.getElementById("add-todo-button");
+      let todoList = document.getElementById("todo-list");
+      let addTodoInput = document.getElementById("add-todo");
+
+      //Variables
+      let inputVal = "";
+      let todoRowIndex = 0;
+
+      // Functions
+      addTodoButton.addEventListener("click", () => {
+        setInputVal();
+      });
+
+      function getInputVal(e) {
+        inputVal = e.value;
+      }
+
+      function setInputVal() {
+        let newTodoListItem = document.createElement("li");
+        let newTodoListItemText = document.createElement("span");
+        let removeIcon = document.createElement("span");
+
+        newTodoListItemText.classList.add("todo-output-text");
+        newTodoListItemText.innerHTML = inputVal;
+        removeIcon.classList.add("todo-output-text-remove");
+        removeIcon.innerHTML = "X";
+
+        newTodoListItem.appendChild(newTodoListItemText);
+        newTodoListItem.appendChild(removeIcon);
+
+        removeIcon.addEventListener("click", (e) => {
+          deleteTodo(newTodoListItem);
+        });
+        todoList.appendChild(newTodoListItem);
+        addTodoInput.value = "";
+      }
+
+      function deleteTodo(todoListItem) {
+        todoListItem.remove();
+      }
+    </script>
+  </body>
+</html>

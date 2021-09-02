@@ -1,0 +1,198 @@
+* {
+  box-sizing: border-box;
+}
+
+$border-val: 1px solid #000;
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  height: 100vh;
+  width: 100%;
+}
+
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+}
+.spinner-1 {
+  border-top: $border-val;
+  border-right: $border-val;
+  border-radius: 50%;
+  position: relative;
+  height: 50px;
+  width: 50px;
+  animation: spinn 1s infinite;
+  animation-timing-function: linear;
+}
+
+.spinner-2 {
+  border: 5px solid rgb(164, 164, 164);
+  border-top: 5px solid black;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  animation: spinn 1s linear infinite;
+}
+
+.spinner-3,
+.spinner-4,
+.spinner-5 {
+  height: 10px;
+  width: 10px;
+  background-color: #000;
+  box-shadow: 0px 0px 1px 1px black;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.spinner-3 {
+  animation: pulse 1.4s linear infinite;
+}
+
+.spinner-4 {
+  animation: pulse 1.4s linear infinite;
+  animation-delay: 0.2s;
+}
+
+.spinner-5 {
+  animation: pulse 1.4s linear infinite;
+  animation-delay: 0.4s;
+}
+
+.toggle-container {
+  height: 20vh;
+  width: 100%;
+
+  .toggle {
+    width: 27px;
+    height: 10px;
+    background-color: rgb(196, 196, 196);
+    border-radius: 12px;
+    margin: 0 auto;
+    position: relative;
+    transition: all 0.3s ease;
+    .slider {
+      transition: all 0.3s ease;
+      height: 15px;
+      width: 15px;
+      top: -2px;
+      left: 0;
+      position: absolute;
+      background: #090b1a;
+      border-radius: 50%;
+    }
+
+    &.is-toggled {
+      .slider {
+        left: 13px;
+      }
+      background: blue;
+    }
+  }
+}
+
+.input-wrapper {
+  height: 20vh;
+  padding: 30px;
+  .input-group {
+    position: relative;
+    height: 40px;
+
+    input {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transition: all 0.3s ease;
+      border: none;
+      border-bottom: 1px solid black;
+      outline: none;
+      width: 100%;
+
+      &:focus {
+        & ~ label {
+          font-size: 0.75rem;
+          bottom: calc(100% - 1rem);
+        }
+        & ~ .overlay {
+          width: 100%;
+        }
+      }
+    }
+
+    .overlay {
+      position: absolute;
+      width: 0px;
+      border-bottom: 1.4px solid green;
+      bottom: 0;
+      transition: all 0.3s ease;
+    }
+
+    label {
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      transition: all 0.3s ease;
+      &.active {
+        bottom: calc(100% - 1rem);
+      }
+    }
+  }
+}
+
+.login-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .login-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 250px;
+    box-shadow: 0px 0px 10px 2px rgb(230, 230, 230);
+    height: 300px;
+    border-radius: 8px;
+    .login-card-overlap {
+      color: #fff;
+      position: absolute;
+      width: 85%;
+      left: 50%;
+      top: -60px;
+      background: linear-gradient(60deg, #ab47bc, #7b1fa2);
+      transform: translateX(-50%);
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px 1px gray;
+      padding: 30px;
+      text-align: center;
+    }
+    .login-card {
+    }
+  }
+}
+
+@keyframes spinn {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

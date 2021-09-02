@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+.container {
+  width: 100%; }
+  .container .info-wrapper {
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .container .info-wrapper.fade-in {
+      opacity: 0;
+      transition: opacity 250ms ease-in; }
+    .container .info-wrapper.appear {
+      opacity: 1; }
+  .container .slide-in {
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .container .slide-in .from-left {
+      transform: translateX(-200%);
+      transition: transform 400ms ease-in; }
+      .container .slide-in .from-left.appear {
+        transform: translateX(0); }
+    .container .slide-in .from-right {
+      transform: translateX(200%);
+      transition: transform 400ms ease-in; }
+      .container .slide-in .from-right.appear {
+        transform: translateX(0); }

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="form-container">
+      <form id="form">
+        <div class="form-group" id="group-1">
+          <p>Vad tycker du är roligast?</p>
+          <input type="radio" name="question-1" id="frontend" />
+          <label for="frontend">Frontend</label>
+          <input type="radio" name="question-1" id="backend" />
+          <label for="backend">Backend</label>
+          <input type="radio" name="question-1" id="design" />
+          <label for="design">Design</label>
+        </div>
+        <div class="form-group hide" id="group-2">
+          <p>Vilka är dina bästa kvaliteter?</p>
+          <input
+            type="checkbox"
+            class="question-2"
+            value="detaljerad"
+            id="detaljerad"
+            onchange="setQuestion2Answers(event)"
+          />
+          <label for="detaljerad">Detaljerad</label>
+          <input
+            type="checkbox"
+            class="question-2"
+            value="teknisk"
+            id="teknisk"
+            onchange="setQuestion2Answers(event)"
+          />
+          <label for="teknisk">Teknisk</label>
+        </div>
+        <div class="form-group">
+          <input id="submit-button" type="submit" value="lämna in svar" />
+          <p id="error" class="hide">Du måste svara på alla frågor!</p>
+        </div>
+      </form>
+      <div class="show-answers-wrapper hide">
+        <h2>Du svarade</h2>
+        <h3>Vad tycker du är roligast?</h3>
+        <ul id="question-1-answer"></ul>
+        <h3>Vilka är dina bästa kvaliteter?</h3>
+        <ul id="question-2-answer"></ul>
+      </div>
+    </div>
+    <div class="check-answer-contianer"></div>
+    <script>
+      // Questions
+      let form = document.getElementById("form");
+      let question1 = document.getElementsByName("question-1");
+      let question2 = document.getElementsByClassName("question-2");
+      let question2Wrapper = document.getElementById("group-2");
+
+      // Answers
+      let question1Answer = document.getElementById("question-1-answer");
+      let question2Answer = document.getElementById("question-2-answer");
+
+      let checkedQuestion1 = "";
+      let checkedQuestion2 = [];
+
+      question1.forEach((e) => {
+        e.addEventListener("change", radioChecked);
+      });
+
+      form.addEventListener("submit", submitForm);
+
+      function radioChecked(e) {
+        checkedQuestion1 = e.target.id;
+        if (checkedQuestion1) {
+          question2Wrapper.classList.remove("hide");
+          document.getElementById("error").classList.add("hide");
+        }
+      }
+
+      function submitForm(e) {
+        e.preventDefault();
+        let submitButton = document.getElementById("submit-button");
+        if (
+          (checkedQuestion1 && !checkedQuestion2.length) ||
+          (!checkedQuestion1 && checkedQuestion2) ||
+          (!checkedQuestion1 && !checkedQuestion2.lengt)
+        ) {
+          document.getElementById("error").classList.remove("hide");
+          return;
+        }
+
+        let hej = document
+          .querySelector(".show-answers-wrapper")
+          .classList.remove("hide");
+
+        if (checkedQuestion1) {
+          let question1Text = document.createTextNode(checkedQuestion1);
+          let newListItem = document.createElement("li");
+          newListItem.appendChild(question1Text);
+          question1Answer.appendChild(newListItem);
+        }
+
+        if (checkedQuestion2) {
+          for (let i = 0; i < checkedQuestion2.length; i++) {
+            let item = checkedQuestion2[i];
+
+            let newListItem = document.createElement("li");
+            let textNode = document.createTextNode(item);
+            newListItem.appendChild(textNode);
+            question2Answer.appendChild(newListItem);
+          }
+        }
+        if (checkedQuestion1 && checkedQuestion2) {
+          document
+            .getElementById("submit-button")
+            .setAttribute("disabled", true);
+        }
+        console.log(e);
+      }
+
+      function setQuestion2Answers(e) {
+        document.getElementById("error").classList.add("hide");
+        if (e.target.checked) {
+          checkedQuestion2.push(e.target.value);
+        } else {
+          if (checkedQuestion2.includes(e.target.value)) {
+            let filteredQuestion2 = checkedQuestion2.filter(
+              (val) => val !== e.target.value
+            );
+            checkedQuestion2 = filteredQuestion2;
+          }
+        }
+        console.log(checkedQuestion2);
+      }
+    </script>
+  </body>
+</html>

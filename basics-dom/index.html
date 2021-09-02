@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="main.css">
+  <title>Basics DOM</title>
+</head>
+
+<body>
+  <div class="container">
+    <a href="compile.html">Go to compile</a>
+    <div class="input-wrapper">
+      <div class="input-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="name" name="name" value="">
+      </div>
+    </div>
+    <div class="radio-btn">
+      <div class="radio-group">
+        <input type="radio" name="age" value="28" id="28">
+        <label for="28">28</label>
+      </div>
+      <div class="radio-group">
+        <input type="radio" name="age" value="32" id="32">
+        <label for="32">32</label>
+      </div>
+      <div class="radio-group">
+        <input type="radio" name="age" value="34" id="34">
+        <label for="34">34</label>
+      </div>
+    </div>
+
+    <div class="check-btn">
+      <div class="checkbox-group">
+        <label for="approve">Approve?</label>
+        <input type="checkbox" name="approve" id="approve">
+      </div>
+    </div>
+
+    <div class="select-group">
+      <label for="city">Your city</label>
+      <select name="city" id="city">
+        <option disabled selected value>--select a city--</option>
+        <option value="malmo">Malmö</option>
+        <option value="lund">Lund</option>
+        <option value="genarp">Genarp</option>
+      </select>
+
+    </div>
+  </div>
+  <script src="index.js"></script>
+</body>
+
+</html>

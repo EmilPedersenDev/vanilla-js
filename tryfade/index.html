@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="p"></div>
+      <div class="info-wrapper fade-in">
+        <h1>Emil</h1>
+        <h2>Pedersen</h2>
+      </div>
+      <div class="info-wrapper fade-in">
+        <h1>Emil</h1>
+        <h2>Pedersen</h2>
+      </div>
+      <div class="info-wrapper fade-in">
+        <h1>Emil</h1>
+        <h2>Pedersen</h2>
+      </div>
+      <div class="info-wrapper fade-in">
+        <h1>Emil</h1>
+        <h2>Pedersen</h2>
+      </div>
+      <div class="slide-in">
+        <h1 class="from-left">Emil</h1>
+        <h2 class="from-right">Pedersen</h2>
+      </div>
+    </div>
+    <script>
+      const faders = document.querySelectorAll(".fade-in");
+      const sliders = document.querySelectorAll(".slide-in");
+      console.log(faders);
+      const appearOptions = {
+        threshold: 0,
+        rootMargin: "0px 0px -300px 0px",
+      };
+
+      const appearOnScroll = new IntersectionObserver(function (
+        entries,
+        appearOnScroll
+      ) {
+        console.log("is it triggered");
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          } else {
+            console.log(entry);
+            if (entry.target.className.indexOf("slide-in") > -1) {
+              let children = entry.target.children;
+              for (let i = 0; i < children.length; i++) {
+                children[i].classList.add("appear");
+              }
+            }
+            entry.target.classList.add("appear");
+            appearOnScroll.unobserve(entry.target);
+          }
+        });
+      },
+      appearOptions);
+
+      faders.forEach((fader) => {
+        appearOnScroll.observe(fader);
+      });
+
+      sliders.forEach((slider) => {
+        appearOnScroll.observe(slider);
+      });
+    </script>
+  </body>
+</html>

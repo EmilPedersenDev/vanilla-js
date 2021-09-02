@@ -1,0 +1,85 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif; }
+
+.container {
+  width: 100%;
+  height: 100vh;
+  background: #0e1111;
+  position: relative; }
+  .container .question-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 3px; }
+    .container .question-wrapper#wrapper-1 {
+      visibility: visible; }
+    .container .question-wrapper#wrapper-2 {
+      visibility: hidden; }
+    .container .question-wrapper#wrapper-3 {
+      visibility: hidden; }
+    .container .question-wrapper#wrapper-4 {
+      visibility: hidden; }
+      .container .question-wrapper#wrapper-4 .score-wrapper {
+        padding: 0px 30px 30px 30px;
+        text-align: center;
+        font-size: 30px; }
+    .container .question-wrapper h1 {
+      padding: 30px;
+      text-align: center; }
+    .container .question-wrapper .alternative-wrapper {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 30px;
+      gap: 10px;
+      padding: 0px 30px 30px 30px;
+      text-align: center; }
+      .container .question-wrapper .alternative-wrapper p {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 5px;
+        background: #fce4ec;
+        border-radius: 3px;
+        transition: all 0.3s ease-in-out 0s; }
+        .container .question-wrapper .alternative-wrapper p:hover {
+          background: #f8bbd0;
+          cursor: pointer; }
+  .container .right-answer-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    width: 100%;
+    max-width: 500px;
+    height: 195px;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center; }
+    .container .right-answer-wrapper#right-answer-wrapper-1 {
+      visibility: hidden; }
+    .container .right-answer-wrapper h4 {
+      margin-top: 10px;
+      transition: 0.3s ease; }
+      .container .right-answer-wrapper h4.notransition {
+        -webkit-transition: none !important;
+        -moz-transition: none !important;
+        -o-transition: none !important;
+        transition: none !important; }
+      .container .right-answer-wrapper h4:hover {
+        color: #f48fb1;
+        cursor: pointer; }
+      .container .right-answer-wrapper h4::after {
+        content: ">";
+        font-size: 14px;
+        font-weight: 100;
+        padding-left: 4px; }

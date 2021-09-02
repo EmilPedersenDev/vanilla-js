@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap");
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h3 {
+  color: white;
+  word-break: break-word;
+}
+
+p {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 12px;
+  font-family: "Lexend Deca", sans-serif;
+  opacity: 0.9;
+  word-break: break-word;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  background: #090b1a;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 1000px;
+  height: 400px;
+  background: #1b1938;
+  border-radius: 8px;
+}
+
+.container .card .card__text-wrapper {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+  padding: 50px 80px 50px;
+}
+
+.container .card .card__text-wrapper > p {
+  line-height: 2;
+}
+
+.container .card .card__text-wrapper h1 span {
+  color: #aa5cdb;
+}
+
+.container .card .card__text-wrapper .card__text-footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 40px;
+}
+
+.container .card .card__text-wrapper .card__text-footer p {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.container .card .card__text-wrapper .card__text-footer .card__item h3 {
+  margin: 8px 0px;
+}
+
+.container .card .card__text-wrapper .card__text-footer .card__item p {
+  margin: 0;
+}
+
+.container .card .card__img-wrapper {
+  position: relative;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+  height: 100%;
+}
+
+.container .card .card__img-wrapper img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.container .card .card__img-wrapper .card__img-overlay {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(170, 92, 219, 0.55);
+}
+/*# sourceMappingURL=style.css.map */

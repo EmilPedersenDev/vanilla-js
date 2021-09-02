@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="nav.css" />
+    <title>Document</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+      }
+      .container {
+        width: 100%;
+        height: 100vh;
+      }
+
+      #form {
+        max-width: 700px;
+        height: 100%;
+        margin: 0 auto;
+        position: relative;
+      }
+      .form-wrapper {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .form-group {
+        margin-bottom: 10px;
+      }
+      label {
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      input {
+        border-radius: 5px;
+        padding: 10px;
+        border: 0.5px solid #000;
+      }
+
+      button {
+        margin-top: 8px;
+        padding: 10px;
+        width: 100%;
+        background: #fff;
+        transition: ease 0.3s;
+        border-radius: 5px;
+      }
+
+      button:hover {
+        background: green;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      .error {
+        text-align: center;
+        padding: 5px;
+        border-radius: 5px;
+        margin-top: 15px;
+      }
+      .error-visible {
+        background: red;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <div class="left-nav">
+          <img
+            src="https://blog.sqreen.com/wp-content/uploads/2019/06/logo-cmyk-indigo.png"
+            alt=""
+          />
+        </div>
+        <div class="right-nav">
+          <ul>
+            <li>Service</li>
+            <li>About</li>
+            <li>Contact Us</li>
+          </ul>
+        </div>
+      </nav>
+      <form id="form">
+        <div class="form-wrapper">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              autocomplete="on"
+              name="name"
+              id="name"
+              placeholder="name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">Lastname</label>
+            <input
+              type="text"
+              autocomplete="on"
+              name="lastname"
+              id="lastname"
+              placeholder="lastname"
+            />
+          </div>
+          <div class="form-group">
+            <label for="passwword">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              autocomplete="off"
+            />
+          </div>
+          <div class="form-group">
+            <button type="submit">Submit</button>
+          </div>
+          <div class="form-group">
+            <p id="error"></p>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script type="module" src="index.js"></script>
+  </body>
+</html>

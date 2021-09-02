@@ -1,0 +1,229 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #1e1e2f;
+}
+
+h3,
+p {
+  margin: 10px 0px;
+  color: #fff;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+}
+
+.container .progress {
+  width: 100%;
+  background: #27293d;
+  height: 5px;
+  position: fixed;
+}
+
+.container .progress .progress__bar {
+  height: 100%;
+  width: 0%;
+  background: -webkit-gradient(linear, left bottom, left top, from(#389466), to(#42b883));
+  background: linear-gradient(0deg, #389466, #42b883);
+  -webkit-transition: all 0.15s ease;
+  transition: all 0.15s ease;
+}
+
+.container .landing {
+  height: 100vh;
+  position: relative;
+}
+
+.container .landing .dropdown {
+  width: 200px;
+  height: auto;
+  background: #27293d;
+  text-align: center;
+  padding: 20px;
+  margin: 0 auto 0;
+  border-radius: 0.2857rem;
+}
+
+.container .landing .dropdown .dropdown--visible h3 {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.container .landing .dropdown .dropdown--visible .fas {
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  color: #fff;
+}
+
+.container .landing .dropdown .dropdown--visible:hover {
+  cursor: pointer;
+}
+
+.container .landing .dropdown .dropdown--visible:hover ~ .dropdown--hidden {
+  opacity: 1;
+  visibility: visible;
+  height: 60px;
+}
+
+.container .landing .dropdown .dropdown--visible:hover .fas {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.container .landing .dropdown .dropdown--hidden {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.container .fa-volleyball-ball {
+  font-size: 64px;
+  position: absolute;
+  right: 50%;
+  -webkit-animation: roleBall 2s;
+          animation: roleBall 2s;
+}
+
+.container .pulsing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.container .pulsing .fa-heart {
+  font-size: 64px;
+  -webkit-animation: pulsate 2s infinite;
+          animation: pulsate 2s infinite;
+}
+
+.container .article {
+  height: 100vh;
+  position: relative;
+  background-color: #27293d;
+}
+
+.container .article .article__wrapper.observable {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-animation: bounce;
+          animation: bounce;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+
+.container .article .article__wrapper.observable h1 {
+  color: #fff;
+}
+
+.container .article .article__wrapper.observable.show {
+  visibility: visible;
+  opacity: 1;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+}
+
+@-webkit-keyframes bounce {
+  0% {
+    left: 0%;
+  }
+  70% {
+    left: 60%;
+  }
+  90% {
+    left: 40%;
+  }
+  97% {
+    left: 48%;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    left: 0%;
+  }
+  70% {
+    left: 60%;
+  }
+  90% {
+    left: 40%;
+  }
+  97% {
+    left: 48%;
+  }
+}
+
+@-webkit-keyframes pulsate {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(2);
+            transform: scale(2);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes pulsate {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(2);
+            transform: scale(2);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@-webkit-keyframes roleBall {
+  0% {
+    right: 0%;
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    right: 50%;
+    -webkit-transform: rotate(-360deg);
+            transform: rotate(-360deg);
+  }
+}
+
+@keyframes roleBall {
+  0% {
+    right: 0%;
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    right: 50%;
+    -webkit-transform: rotate(-360deg);
+            transform: rotate(-360deg);
+  }
+}
+/*# sourceMappingURL=style.css.map */

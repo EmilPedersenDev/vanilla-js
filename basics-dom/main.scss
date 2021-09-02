@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.check-btn,
+.input-wrapper {
+  margin: 20px 0px;
+}
+
+.input-wrapper {
+  .input-group {
+    > * {
+      display: block;
+    }
+  }
+}

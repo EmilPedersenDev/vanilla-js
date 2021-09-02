@@ -1,0 +1,161 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #1e1e2f;
+}
+
+h3,
+p {
+  margin: 10px 0px;
+  color: #fff;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  .progress {
+    width: 100%;
+    background: #27293d;
+    height: 5px;
+    position: fixed;
+    .progress__bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(0deg, #389466, #42b883);
+      transition: all 0.15s ease;
+    }
+  }
+  .landing {
+    height: 100vh;
+    position: relative;
+    .dropdown {
+      width: 200px;
+      height: auto;
+      // box-shadow: 0px 0px 5px 0px #000;
+      background: #27293d;
+      text-align: center;
+      padding: 20px;
+      margin: 0 auto 0;
+      border-radius: 0.2857rem;
+      .dropdown--visible {
+        h3 {
+          display: inline-block;
+          margin-right: 8px;
+        }
+        .fas {
+          transition: all 0.3s ease;
+          color: #fff;
+        }
+        &:hover {
+          cursor: pointer;
+          & ~ .dropdown--hidden {
+            opacity: 1;
+            visibility: visible;
+            height: 60px;
+          }
+          .fas {
+            transform: rotate(180deg);
+          }
+        }
+      }
+      .dropdown--hidden {
+        opacity: 0;
+        visibility: hidden;
+        height: 0;
+        transition: all 0.3s ease;
+        overflow: hidden;
+
+        // transition: visibility 0.5s ease;
+      }
+    }
+  }
+  .fa-volleyball-ball {
+    font-size: 64px;
+    position: absolute;
+    right: 50%;
+    animation: roleBall 2s;
+  }
+
+  .pulsing {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    .fa-heart {
+      font-size: 64px;
+      animation: pulsate 2s infinite;
+    }
+  }
+
+  .article {
+    height: 100vh;
+    position: relative;
+    background-color: #27293d;
+    .article__wrapper {
+      &.observable {
+        position: absolute;
+        visibility: hidden;
+        opacity: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: bounce;
+        animation-duration: 2s;
+        animation-play-state: paused;
+        // transition: all 1.5s ease;
+        h1 {
+          color: #fff;
+        }
+        &.show {
+          visibility: visible;
+          opacity: 1;
+          animation-play-state: running;
+          // transform: translateY(0);
+        }
+      }
+    }
+  }
+}
+
+@keyframes bounce {
+  0% {
+    left: 0%;
+  }
+  70% {
+    left: 60%;
+  }
+  90% {
+    left: 40%;
+  }
+  97% {
+    left: 48%;
+  }
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes roleBall {
+  0% {
+    right: 0%;
+    transform: rotate(0);
+  }
+
+  100% {
+    right: 50%;
+    transform: rotate(-360deg);
+  }
+}

@@ -1,0 +1,61 @@
+$white: #fff;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #282c34;
+  margin: 0;
+}
+
+.container {
+  margin: 0 auto;
+  color: $white;
+  @media (min-width: 992px) {
+    width: 80%;
+  }
+}
+
+.search-wrapper {
+  text-align: center;
+  margin: 20px 0px;
+  input {
+    border-radius: 5px;
+    padding: 10px;
+    min-width: 300px;
+    border: 1px solid $white;
+    background: transparent;
+    outline: none;
+    color: $white;
+    &::placeholder {
+      color: $white;
+    }
+  }
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: black;
+  .card {
+    height: 300px;
+    width: 230px;
+    background: $white;
+    margin: 20px;
+    text-align: center;
+    padding-top: 10px;
+    h1 {
+      width: 100%;
+      font-size: 20px;
+      margin-top: 40px;
+    }
+    img {
+      width: 130px;
+      height: 130px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+}

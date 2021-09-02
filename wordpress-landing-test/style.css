@@ -1,0 +1,106 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Lato", sans-serif;
+  height: 100vh;
+  width: 100%;
+  background-image: url("https://demo.themovation.com/stratus/wp-content/uploads/2017/09/prod2_hero.jpg");
+  background-size: auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: #0c0c0c;
+}
+
+body button {
+  padding: 8px 18px;
+  border: 0.8px solid #fff;
+  background-color: transparent;
+  border-radius: 40px;
+  color: #fff;
+}
+
+body button.secondary {
+  background-color: #045089;
+}
+
+body .container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+body .container nav {
+  padding: 20px 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+body .container nav img {
+  width: 150px;
+  height: 100%;
+}
+
+body .container nav ul {
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body .container nav ul li {
+  list-style-type: none;
+  margin: 0 15px;
+}
+
+body .container nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+body .container .landing {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -20%);
+          transform: translate(-50%, -20%);
+}
+
+body .container .landing h1 {
+  color: #fff;
+  font-size: 56px;
+  font-weight: 500;
+}
+
+body .container .landing .landing__cta {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body .container .landing .landing__cta button {
+  font-size: 17px;
+  padding: 12px 38px;
+  border-width: 1.8px;
+}
+
+body .container .landing .landing__cta button:first-child {
+  border: none;
+  margin-right: 20px;
+}
+/*# sourceMappingURL=style.css.map */

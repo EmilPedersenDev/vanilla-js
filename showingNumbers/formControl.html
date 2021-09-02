@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+    <style>
+      .form-control-container {
+        text-align: center;
+      }
+
+      a {
+        text-decoration: none;
+        color: #000;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.3s ease-in-out;
+      }
+
+      a:hover {
+        opacity: 0.7;
+        color: #000;
+        text-decoration: none;
+      }
+
+      a::before {
+        content: "<";
+        margin-right: 5px;
+        font-size: 12px;
+      }
+      .form-wrapper {
+        width: 80%;
+        margin: 50px auto 0px;
+      }
+      .form-wrapper .row {
+        justify-content: center;
+      }
+      button {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-control-container">
+      <a href="index.html">Go Back</a>
+      <h1>Form Control</h1>
+
+      <div class="form-wrapper">
+        <form id="form">
+          <div class="row">
+            <input
+              id="firstname"
+              class="col-5"
+              type="text"
+              placeholder="Firstname"
+              oninput="setFormValues()"
+            />
+            <input
+              id="lastname"
+              class="col-5"
+              type="name"
+              placeholder="Lastname"
+              oninput="setFormValues()"
+            />
+          </div>
+          <div class="row">
+            <input
+              id="company"
+              class="col-10"
+              type="company"
+              placeholder="company"
+              oninput="setFormValues()"
+            />
+          </div>
+          <div class="row">
+            <button class="col-3" type="submit" onclick="getPersonInfo()">
+              Se info
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="form-output"></div>
+    </div>
+    <script>
+      document
+        .getElementsByTagName("button")[0]
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+        });
+      let lastName;
+      let company;
+      let firstName;
+
+      console.log(firstName, lastName, company);
+
+      function setFormValues() {
+        firstName = document.getElementById("firstname").value;
+        lastName = document.getElementById("lastname").value;
+        company = document.getElementById("company").value;
+      }
+      function getPersonInfo() {
+        let informationArr = Array.of(firstName, lastName, company);
+        let formOutput = document.getElementsByClassName("form-output")[0];
+        formOutput.innerHTML = "";
+        for (let i = 0; i < informationArr.length; i++) {
+          let newOutput = document.createElement("p");
+          let newOutputText;
+          if (i === 0) {
+            newOutputText = document.createTextNode(
+              "Firstname: " + informationArr[i]
+            );
+          } else if (i === 1) {
+            newOutputText = document.createTextNode(
+              "Lastname: " + informationArr[i]
+            );
+          } else {
+            newOutputText = document.createTextNode(
+              "Company: " + informationArr[i]
+            );
+          }
+          newOutput.appendChild(newOutputText);
+          formOutput.appendChild(newOutput);
+        }
+
+        document.getElementById("form").reset();
+      }
+    </script>
+  </body>
+</html>

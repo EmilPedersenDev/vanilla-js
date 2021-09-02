@@ -1,0 +1,87 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background-color: #282c34;
+  margin: 0;
+}
+
+.container {
+  margin: 0 auto;
+  color: #fff;
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 80%;
+  }
+}
+
+.search-wrapper {
+  text-align: center;
+  margin: 20px 0px;
+}
+
+.search-wrapper input {
+  border-radius: 5px;
+  padding: 10px;
+  min-width: 300px;
+  border: 1px solid #fff;
+  background: transparent;
+  outline: none;
+  color: #fff;
+}
+
+.search-wrapper input::-webkit-input-placeholder {
+  color: #fff;
+}
+
+.search-wrapper input:-ms-input-placeholder {
+  color: #fff;
+}
+
+.search-wrapper input::-ms-input-placeholder {
+  color: #fff;
+}
+
+.search-wrapper input::placeholder {
+  color: #fff;
+}
+
+.grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: black;
+}
+
+.grid .card {
+  height: 300px;
+  width: 230px;
+  background: #fff;
+  margin: 20px;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.grid .card h1 {
+  width: 100%;
+  font-size: 20px;
+  margin-top: 40px;
+}
+
+.grid .card img {
+  width: 130px;
+  height: 130px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+/*# sourceMappingURL=index.css.map */

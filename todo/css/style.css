@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif; }
+
+.container {
+  height: 100vh;
+  width: 100%; }
+  .container h1 {
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+  .container .add-todo {
+    text-align: center;
+    position: relative; }
+    .container .add-todo input {
+      padding: 10px;
+      border-right: none !important;
+      border: 0.5px solid black;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px; }
+      .container .add-todo input:focus {
+        outline: none; }
+    .container .add-todo button {
+      padding: 10px;
+      position: absolute;
+      border: 0.5px solid black;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+      transition: ease 0.3s;
+      background: #ce93d8;
+      color: #fff; }
+      .container .add-todo button:hover {
+        cursor: pointer;
+        background: #ab47bc; }
+  .container .todo-output {
+    text-align: center;
+    margin-top: 50px; }
+    .container .todo-output ul li .todo-output-text {
+      margin-right: 10px; }
+    .container .todo-output ul li .todo-output-text-remove {
+      color: red;
+      cursor: pointer; }

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="img-wrapper">
+        <div class="arrow-wrapper">
+          <i class="fas fa-angle-left" id="1"></i>
+          <i class="fas fa-angle-right" id="2"></i>
+        </div>
+        <div class="dots-wrapper">
+          <span id="1" class="dot"></span>
+          <span id="2" class="dot"></span>
+        </div>
+        <div id="img-1">
+          <img
+            src="https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80"
+            alt=""
+          />
+          <div class="info-wrapper">
+            <h1>Forest</h1>
+            <h3>Description</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum
+              rerum facere adipisci magnam laborum cumque sed ad praesentium,
+              earum, vel at fugiat quasi quae excepturi? Tenetur, in? Eos, eaque
+              fuga?
+            </p>
+          </div>
+        </div>
+        <div id="img-2">
+          <img
+            src="https://www.wallpapertip.com/wmimgs/67-674709_forest-1920-x-1080.jpg"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+    <script>
+      let dotOne = document.getElementById("dot-1");
+      let dotTwo = document.getElementById("dot-2");
+
+      let dots = document.querySelectorAll(".dot");
+      let arrows = document.querySelectorAll(".fas");
+
+      let images = ["img-1", "img-2"];
+
+      let clickedImg = document.getElementById("img-1");
+
+      let inactiveImg;
+
+      dots.forEach((e) => {
+        e.addEventListener("click", () => {
+          dotClicked(e);
+        });
+      });
+
+      arrows.forEach((e) => {
+        debugger;
+        e.addEventListener("click", () => {
+          dotClicked(e);
+        });
+      });
+
+      function dotClicked(e) {
+        images.find((item) => {
+          if (item.includes(e.id)) {
+            clickedImg = document.getElementById(item);
+            clickedImg.style.zIndex = "2";
+            clickedImg.style.visibility = "visible";
+            clickedImg.style.opacity = "1";
+          } else {
+            inactiveImg = document.getElementById(item);
+            inactiveImg.style.zIndex = "1";
+            inactiveImg.style.visibility = "hidden";
+            inactiveImg.style.opacity = "0.5";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

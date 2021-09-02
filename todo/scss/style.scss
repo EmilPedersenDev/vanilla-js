@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.container {
+  height: 100vh;
+  width: 100%;
+  h1 {
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .add-todo {
+    text-align: center;
+    position: relative;
+    input {
+      padding: 10px;
+      border-right: none !important;
+      border: 0.5px solid black;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+      &:focus {
+        outline: none;
+      }
+    }
+    button {
+      padding: 10px;
+      position: absolute;
+      border: 0.5px solid black;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+      transition: ease 0.3s;
+      background: #ce93d8;
+      color: #fff;
+      &:hover {
+        cursor: pointer;
+        background: #ab47bc;
+      }
+    }
+  }
+
+  .todo-output {
+    text-align: center;
+    margin-top: 50px;
+    ul {
+      li {
+        .todo-output-text {
+          margin-right: 10px;
+        }
+        .todo-output-text-remove {
+          color: red;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

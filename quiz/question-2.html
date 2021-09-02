@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./main.css">
+
+  <title>Question2</title>
+</head>
+
+<body>
+  <div class="quiz__container">
+    <div class="quiz__wrapper">
+      <div class="quiz__question">
+        <h1 id="question-title">Where is he born?</h1>
+        <input type="radio" name="born" id="lund" value="lund">
+        <label for="lund">Lund</label><br>
+        <input type="radio" name="born" id="malmo" value="malmo">
+        <label for="malmo">Malmö</label><br>
+        <input type="radio" name="born" id="genarp" value="genarp">
+        <label for="genarp">Genarp</label><br>
+        <button class="next-btn age" onclick="next(event, 2, 'stuga')">Next</button>
+      </div>
+    </div>
+  </div>
+  <script src="quiz.js"></script>
+  <script src="question-2.js"></script>
+</body>
+
+</html>
